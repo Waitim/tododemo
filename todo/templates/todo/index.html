@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDo App</title>
+</head>
+<body>
+	<h1 align="center">WHAT DO YOU WAITING FOR???</h1>
+	<br>
+	<div align="center" ><form action="{% url 'add' %}" method="post" role="form">
+		{% csrf_token %}
+		{{ form.text }}
+		<span><button type="submit">ADD</button></span>
+	</form></div>
+	<div align="center">
+		<a href="{% url 'deletecomplete' %}" ><button type="button">DELETE COMPLETE</button></a>
+	</div>
+	<div align="center" class="delete all">
+		<a href="{% url 'deleteall' %}"><button type="button">DELETE ALL</button></a>
+	</div>
+	<div align="center" class="change info">
+		<a href="{% url 'updatetodo' %}"><button type="button">UPDATE</button></a>
+	</div>
+	<div>
+	<ul>
+		{% for todo in todo_list %}
+			{% if todo.complete %}
+			<li>{{ todo.text }}</li>
+			{% else %}
+			<a href="{% url 'complete' todo.id %}"><li>{{ todo.text }}</li></a>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	</div>
+</body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+<footer>
+				<div class="row pad">
+					<div align="center" class="col-lg-12 text-center">
+						Copyright &copy; 2019 <strong>ToDo App</strong>
+					</div>
+				</div>
+			</footer>
+</html>
